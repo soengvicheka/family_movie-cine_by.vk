@@ -103,6 +103,7 @@ input {
 
 .search-bar button,
 .primary-link,
+.play-button,
 .card-action,
 .empty-state a {
   border: 0;
@@ -121,6 +122,7 @@ input {
 
 .search-bar button:hover,
 .primary-link:hover,
+.play-button:hover,
 .card-action:hover,
 .empty-state a:hover {
   transform: translateY(-1px);
@@ -165,7 +167,7 @@ main {
   border-radius: 0.9rem;
   background:
     linear-gradient(90deg, rgba(12, 16, 25, 0.88), rgba(12, 16, 25, 0.28)),
-    url("/src/assets/hero.png") center / cover;
+    url("/src/assets/hero-collage.png") center / cover;
   box-shadow: 0 1.25rem 3rem rgba(31, 38, 52, 0.18);
 }
 
@@ -320,10 +322,40 @@ main {
   padding: clamp(1.2rem, 4vw, 4rem);
 }
 
-.movie-detail img {
-  width: 100%;
+.watch-preview {
+  position: relative;
+  overflow: hidden;
   border-radius: 0.7rem;
   box-shadow: 0 1.5rem 3rem rgba(32, 38, 52, 0.18);
+}
+
+.watch-preview::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent 38%, rgba(12, 16, 25, 0.72));
+  pointer-events: none;
+}
+
+.watch-preview img,
+.movie-detail img {
+  width: 100%;
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  z-index: 1;
+  min-width: 9rem;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.play-button:hover {
+  transform: translateX(-50%) translateY(-1px);
 }
 
 .detail-copy {
@@ -347,12 +379,28 @@ main {
 }
 
 .primary-link,
+.secondary-link,
 .empty-state a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
   padding: 0.85rem 1rem;
+}
+
+.detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.secondary-link {
+  border: 1px solid rgba(36, 91, 143, 0.25);
+  border-radius: 0.65rem;
+  color: #245b8f;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .empty-state {
@@ -387,6 +435,7 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .watch-preview,
   .movie-detail img {
     max-width: 24rem;
   }
